@@ -1,0 +1,8 @@
+/* src/styles/globals.css */
+
+/* Import Tailwind's default styles */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Your custom global styles (if any) can go here */
