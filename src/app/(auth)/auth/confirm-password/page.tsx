@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
 import React, { useState } from 'react';
-import { useRouter } from 'next/router';
+import { useSearchParams } from 'next/navigation';
 
 const ConfirmPassword = () => {
-  const router = useRouter();
-  const { token } = router.query; // Token from the reset password link
+  const searchParams = useSearchParams();
+  const token = searchParams.get('token');
 
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -26,7 +26,6 @@ const ConfirmPassword = () => {
     }
 
     try {
-      // Replace with actual API call to confirm and reset the password
       const response = await fetch('/api/auth/confirm-password', {
         method: 'POST',
         headers: {
@@ -55,13 +54,8 @@ const ConfirmPassword = () => {
     <div>
       <h2 className="text-2xl font-semibold text-center text-gray-900 mb-8">Reset Your Password</h2>
 
-      {message && (
-        <div className="mb-4 text-green-500 text-center">{message}</div>
-      )}
-
-      {error && (
-        <div className="mb-4 text-red-500 text-center">{error}</div>
-      )}
+      {message && <div className="mb-4 text-green-500 text-center">{message}</div>}
+      {error && <div className="mb-4 text-red-500 text-center">{error}</div>}
 
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
